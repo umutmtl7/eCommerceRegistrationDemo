@@ -21,7 +21,7 @@ public class UserManager implements UserService {
 	}
 
 	@Override
-	public void register(User user) {
+	public void register(User user,Scanner scan) {
 		if(EmailValidator.emailValidate(user.getEmail())==true)
 		{
 			boolean checkNames = NameSurnameValidation.NameSurnameValidate(user.getFirstName(), user.getLastName());
@@ -31,7 +31,6 @@ public class UserManager implements UserService {
 				boolean isGoogle = registerService.register(user.getEmail(), user.getPassword());
 				if(isGoogle == true)
 				{
-					Scanner scan = new Scanner(System.in);
 					Random random = new Random();
 					int number = random.nextInt(999999);
 					System.out.println("Please Enter This Verification Code : " + number);
@@ -40,11 +39,11 @@ public class UserManager implements UserService {
 					{
 						System.out.println("Congratulations! Your account has been created.");
 						userDao.add(user);
-						scan.close();
+						return;
 					}
 					else {
 						System.out.println("You entered the false verification code.");
-						scan.close();
+						return;
 					}
 				}
 
@@ -53,6 +52,7 @@ public class UserManager implements UserService {
 		else
 		{
 			System.out.println("Email not valid.");
+			return;
 		}
 	}
 
