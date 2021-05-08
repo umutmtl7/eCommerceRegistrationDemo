@@ -33,9 +33,10 @@ public class UserManager implements UserService {
 				{
 					Random random = new Random();
 					int number = random.nextInt(999999);
-					System.out.println("Please Enter This Verification Code : " + number);
-					int verifyNumber = scan.nextInt();
-					if(verifyNumber == number)
+					String formatRandom = String.format("%06d", number);
+					System.out.println("Please Enter This Verification Code : " + formatRandom);
+					String verifyNumber = scan.next();
+					if(verifyNumber.equals(formatRandom))
 					{
 						userDao.add(user);
 						return;
