@@ -37,7 +37,6 @@ public class UserManager implements UserService {
 					int verifyNumber = scan.nextInt();
 					if(verifyNumber == number)
 					{
-						System.out.println("Congratulations! Your account has been created.");
 						userDao.add(user);
 						return;
 					}

@@ -18,7 +18,10 @@ public class Main {
 		UserManager userManager = new UserManager(new InMemoryUserDao(users),new GoogleRegisterAdapter());
 		userManager.register(user,scan);
 		userManager.register(user,scan);
-		userManager.register(user1,scan);
+//		userManager.register(user1,scan);
+		System.out.println("--------------------");
+		userManager.login(user1);
+		userManager.login(user);
 		scan.close();
 	}
 

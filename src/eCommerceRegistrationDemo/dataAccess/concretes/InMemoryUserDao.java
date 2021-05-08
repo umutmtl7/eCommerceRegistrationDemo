@@ -21,9 +21,10 @@ public class InMemoryUserDao implements UserDao{
 			if(userInList.getEmail().equals(user.getEmail())) {
 				mailAlreadyExist = true;
 				System.out.println("This email address is already in use.");
+				return;
 				}
 		}
-		if(mailAlreadyExist == false)
+		if(!mailAlreadyExist)
 		users.add(user);
 		System.out.println(user.getEmail() + " added.");
 		}
@@ -42,6 +43,7 @@ public class InMemoryUserDao implements UserDao{
 			if(user.getId() == id) {
 				inList = true;
 				System.out.println(user.getEmail() + " deleted successfully.");	
+				return;
 		}
 		}
 		if(!inList)
@@ -55,6 +57,7 @@ public class InMemoryUserDao implements UserDao{
 		for (User user : users) {
 			if(user.getEmail() == email && user.getPassword() == password)
 			{
+				System.out.println("You logged in " + email);
 				return user;
 			}
 		}
